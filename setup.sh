@@ -2,22 +2,55 @@
 sudo apt update
 sudo apt upgrade
 sudo apt install -y \
-  bitwise \
-  curl \
-  dotnet6 \
-  gcc \
-  gdb \
-  g++ \
-  git \
-  gpg \
-  lf \
-  nodejs \
-  openssl \
-  python3 \
-  ssh \
-  tar \
-  wget \
-  zsh
+    apt-transport-https \
+    bitwise \
+    curl \
+    dotnet6 \
+    gcc \
+    gdb \
+    g++ \
+    git \
+    gpg \
+    lf \
+    neovim \
+    nodejs \
+    openssl \
+    python3 \
+    ssh \
+    tar \
+    wget \
+    zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
-mv raw.zshrc ~/.zshrc
+cp raw.zshrc ~/.zshrc
+
+# Setup VSCode Keyring
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+
+# Install VSCode
+sudo apt update
+sudo apt install code
+
+# Setup Vim Plugged
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install my configuration
+cp raw.vimrc ~/.vimrc
+
+# Install vim plugins
+vim +PlugInstall +qall
+
+# Setup Neovim init.vim
+mkdir -p ~/.config/nvim
+cp init.vim ~/.config/nvim/init.vim
+
+# Pull down my colors
+wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon.vim
+wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon-airline.vim
+
+mkdir -p ~/.vim/colors && mv miamineon.vim ~/.vim/colors/miamineon.vim
+mkdir -p ~/.vim/pugged/vim-airline-themes/autoload/airline/themes/ && mv miamineon-airline.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
