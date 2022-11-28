@@ -47,3 +47,4 @@ cd stdman
 sudo make install
 cd ..
 rm -rf stdman
+sudo mandb
