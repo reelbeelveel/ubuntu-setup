@@ -46,4 +46,4 @@ cd stdman
 ./configure
 sudo make install
 cd ..
-rm -rvf stdman
+rm -rf stdman
