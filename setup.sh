@@ -37,4 +37,5 @@ wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon.v
 wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon-airline.vim
 
 mkdir -p ~/.vim/colors && mv miamineon.vim ~/.vim/colors/miamineon.vim
-mkdir -p ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/ && mv miamineon-airline.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
+mkdir -p ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/ && cp miamineon-airline.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
+mv miamineon-airline.vim ~/.config/nvim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
