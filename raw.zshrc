@@ -25,11 +25,11 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
+ zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+ zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -41,7 +41,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -79,7 +79,16 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+ export LANG=en_US.UTF-8
+ export SHELL=/bin/zsh
+ export EDITOR=nvim
+ export PAGER=most
+eval source <(/usr/local/bin/starship init zsh --print-full-init)
+if [[ $SHLVL == 1 ]]; then
+    tmux
+else
+    tmux source-file ~/tmux.conf
+fi
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -99,3 +108,30 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Colors
+ default=$(tput sgr0)
+ red=$(tput setaf 1)
+ green=$(tput setaf 2)
+ purple=$(tput setaf 5)
+ orange=$(tput setaf 9)
+# # Begin blinking
+ export LESS_TERMCAP_mb=$red
+# # Begin bold
+ export LESS_TERMCAP_md=$orange
+# # End mode
+ export LESS_TERMCAP_me=$default
+# # End standout-mode
+ export LESS_TERMCAP_se=$default
+# # Begin standout-mode - info box
+ export LESS_TERMCAP_so=$purple
+# # End underline
+ export LESS_TERMCAP_ue=$default
+# # Begin underline
+ export LESS_TERMCAP_us=$green
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PROMPT_EOL_MARK=''
+source "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd/lf-shellcd"
+
+bindkey -s ^o "lf\n"
