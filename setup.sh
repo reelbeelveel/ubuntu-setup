@@ -6,6 +6,8 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
 cp raw.zshrc ~/.zshrc
 
+chsh /bin/zsh
+
 # Setup VSCode Keyring
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
@@ -35,4 +37,4 @@ wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon.v
 wget https://raw.githubusercontent.com/reelbeelveel/miamineon/master/miamineon-airline.vim
 
 mkdir -p ~/.vim/colors && mv miamineon.vim ~/.vim/colors/miamineon.vim
-mkdir -p ~/.vim/pugged/vim-airline-themes/autoload/airline/themes/ && mv miamineon-airline.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
+mkdir -p ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/ && mv miamineon-airline.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/miamineon.vim
