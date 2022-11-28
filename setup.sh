@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 sudo apt install -y \
     apt-transport-https \
     bitwise \
@@ -18,6 +18,7 @@ sudo apt install -y \
     python3 \
     ssh \
     tar \
+    tmux \
     wget \
     zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -32,7 +33,7 @@ rm -f packages.microsoft.gpg
 
 # Install VSCode
 sudo apt update
-sudo apt install code
+sudo apt install -y code
 
 # Setup Vim Plugged
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
