@@ -79,10 +79,10 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
- export LANG=en_US.UTF-8
- export SHELL=/bin/zsh
- export EDITOR=nvim
- export PAGER=most
+export LANG=en_US.UTF-8
+export SHELL=/bin/zsh
+export EDITOR=nvim
+export PAGER=most
 eval source <(/usr/local/bin/starship init zsh --print-full-init)
 if [[ $SHLVL == 1 ]]; then
     tmux
@@ -132,6 +132,3 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PROMPT_EOL_MARK=''
-source "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd/lf-shellcd"
-
-bindkey -s ^o "lf\n"

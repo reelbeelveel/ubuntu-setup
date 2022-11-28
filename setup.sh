@@ -6,7 +6,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
 cp hidden.zshrc ~/.zshrc
 
-chsh /bin/zsh
+curl -sS https://starship.rs/install.sh | sh
 
 # Setup VSCode Keyring
 #wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -51,11 +51,4 @@ cd ..
 rm -rf stdman
 sudo mandb
 
-git clone https://github.com/slavistan/lf-gadgets/tree/master/lf-shellcd
-cd lf-shellcd
-mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd"
-cp lfrc-shellcd lf-shellcd "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd"
-cd ..
-rm -rf lf-shellcd
-
-curl -sS https://starship.rs/install.sh | sh
+chsh /bin/zsh
