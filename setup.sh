@@ -1,10 +1,10 @@
 #!/bin/bash
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y apt-transport-https bitwise curl exuberant-ctags gcc gdb g++ git gpg lf neovim nodejs openssl python3 ssh tar tmux valgrind wget zsh
+sudo apt install -y apt-transport-https bitwise curl exuberant-ctags gcc gdb g++ git gpg lf most neovim nodejs openssl python3 ssh tar tmux valgrind wget zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
-cp raw.zshrc ~/.zshrc
+cp hidden.zshrc ~/.zshrc
 
 chsh /bin/zsh
 
@@ -23,7 +23,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install my configuration
-cp raw.vimrc ~/.vimrc
+cp hidden.vimrc ~/.vimrc
+cp hidden.tmuxlinerc ~/.tmuxlinerc
+cp tmux.conf ~/tmux.conf
 
 # Install vim plugins
 vim +PlugInstall +qall
@@ -48,3 +50,12 @@ sudo make install
 cd ..
 rm -rf stdman
 sudo mandb
+
+git clone https://github.com/slavistan/lf-gadgets/tree/master/lf-shellcd
+cd lf-shellcd
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd"
+cp lfrc-shellcd lf-shellcd "${XDG_CONFIG_HOME:-$HOME/.config}/lf-shellcd"
+cd ..
+rm -rf lf-shellcd
+
+curl -sS https://starship.rs/install.sh | sh
